@@ -80,7 +80,15 @@ function montaTr(paciente) {
         inputSexo.value = valorSelect();
         inputPeso.value = paciente.peso;
         inputAltura.value = paciente.altura;
-    })
+    });
+
+    excluir.addEventListener("click", function(event) {
+        event.target.parentNode.parentNode.classList.add("sumiu");
+   
+        setTimeout(function() {
+             event.target.parentNode.parentNode.remove();
+        }, 500);
+   })
 
     nomeTd.textContent = paciente.nome;
     idadeTd.textContent = paciente.idade;
