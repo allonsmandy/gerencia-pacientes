@@ -57,6 +57,7 @@ function adicionaPacienteNaTabela(paciente) {
     
     if (paciente.index) {
         tabela.children[parseInt(paciente.index, 0) - 1].innerHTML = pacienteTr.innerHTML
+        botaoAdicionar.innerHTML = "Adicionar <ion-icon name='checkmark'></ion-icon>";        
     } else {
         tabela.appendChild(pacienteTr);
     }
@@ -89,6 +90,7 @@ function montaTr(paciente) {
         inputPeso.value = paciente.peso;
         inputAltura.value = paciente.altura;
         inputIndex.value = this.parentNode.rowIndex;
+        botaoAdicionar.innerHTML = "Atualizar <ion-icon name='sync'></ion-icon>";
     });
 
     excluir.addEventListener("click", function(event) {
