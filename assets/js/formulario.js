@@ -14,6 +14,7 @@ botaoAdicionar.addEventListener("click", function(event) {
     }
 
     adicionaPacienteNaTabela(paciente);
+    formulario.index.value = "";
     formulario.reset();
 });
 
@@ -44,7 +45,8 @@ function pacientesDoFormulario(formulario) {
         sexo: valorSelect(),
         peso: formulario.peso.value,
         altura: formulario.altura.value,
-        imc: calculaImc(formulario.peso.value, formulario.altura.value)
+        imc: calculaImc(formulario.peso.value, formulario.altura.value),
+        index: formulario.index.value
     }
     return paciente;
 }
@@ -52,7 +54,12 @@ function pacientesDoFormulario(formulario) {
 function adicionaPacienteNaTabela(paciente) {
     pacienteTr = montaTr(paciente);
     var tabela = document.querySelector("#tabela-pacientes");
-    tabela.appendChild(pacienteTr);
+    
+    if (paciente.index) {
+        tabela.children[parseInt(paciente.index, 0) - 1].innerHTML = pacienteTr.innerHTML
+    } else {
+        tabela.appendChild(pacienteTr);
+    }
 }
 
 function montaTr(paciente) {
@@ -74,12 +81,14 @@ function montaTr(paciente) {
         var inputSexo = document.getElementById("sexo");
         var inputPeso = document.getElementById("peso");
         var inputAltura = document.getElementById("altura");
+        var inputIndex = document.getElementById("index");
 
         inputNome.value = paciente.nome;
         inputIdade.value = paciente.idade;
         inputSexo.value = valorSelect();
         inputPeso.value = paciente.peso;
         inputAltura.value = paciente.altura;
+        inputIndex.value = this.parentNode.rowIndex;
     });
 
     excluir.addEventListener("click", function(event) {
