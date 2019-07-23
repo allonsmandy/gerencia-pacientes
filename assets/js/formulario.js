@@ -29,12 +29,19 @@ function exibeMensagensDeErro(erros) {
         });
 }
 
+function valorSelect() {
+    var sexoSelect = document.getElementById("sexo");
+    sexo = sexoSelect.options[sexoSelect.selectedIndex].text;
+
+    return sexo;
+}
+
 
 function pacientesDoFormulario(formulario) {
     var paciente = {
         nome: formulario.nome.value,
         idade: formulario.idade.value,
-        sexo: formulario.sexo.value,
+        sexo: valorSelect(),
         peso: formulario.peso.value,
         altura: formulario.altura.value,
         imc: calculaImc(formulario.peso.value, formulario.altura.value)
@@ -54,20 +61,37 @@ function montaTr(paciente) {
 
     var nomeTd = montaTd(paciente.nome, "td-nome");
     var idadeTd = montaTd(paciente.idade, "td-idade");
+    var sexoTd = montaTd(valorSelect(), "td-sexo");
     var pesoTd = montaTd(paciente.peso, "td-peso");
     var alturaTd = montaTd(paciente.altura, "td-altura");
     var imcTd = montaTd(paciente.imc, "td-imc");
     var editar = montaTd('<ion-icon name="create"></ion-icon>', 'td-editar');
-    var excluir = montaTd('<ion-icon name="trash" id="excluir"></ion>', 'td-excluir');
+    var excluir = montaTd('<ion-icon name="trash"></ion>', 'td-excluir');
+
+    editar.addEventListener("click", function() {
+        var inputNome = document.getElementById("nome");
+        var inputIdade = document.getElementById("idade");
+        var inputSexo = document.getElementById("sexo");
+        var inputPeso = document.getElementById("peso");
+        var inputAltura = document.getElementById("altura");
+
+        inputNome.value = paciente.nome;
+        inputIdade.value = paciente.idade;
+        inputSexo.value = valorSelect();
+        inputPeso.value = paciente.peso;
+        inputAltura.value = paciente.altura;
+    })
 
     nomeTd.textContent = paciente.nome;
     idadeTd.textContent = paciente.idade;
+    sexoTd.textContent =  valorSelect();
     pesoTd.textContent = paciente.peso;
     alturaTd.textContent = paciente.altura;
     imcTd.textContent = paciente.imc;
 
     pacienteTr.appendChild(nomeTd);
     pacienteTr.appendChild(idadeTd);
+    pacienteTr.appendChild(sexoTd);
     pacienteTr.appendChild(pesoTd);
     pacienteTr.appendChild(alturaTd);
     pacienteTr.appendChild(imcTd);

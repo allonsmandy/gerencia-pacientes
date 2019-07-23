@@ -137,7 +137,7 @@ option {
     cursor: pointer;
 }
 
-button {
+.adiciona {
     padding: 10px 20px;
     background: var(--color6);
     width: 50%;
@@ -150,17 +150,17 @@ button {
     border: 2px solid var(--color5);
 }
 
-button ion-icon {
+.adiciona ion-icon {
     padding-left: 5px;
     vertical-align: middle;
 }
 
-button:hover {
+.adiciona:hover {
     background: var(--color6);
     box-shadow: 3px 3px 0 var(--color5);
 }
 
-button:active {
+.adiciona:active {
     box-shadow: 3px 3px 2px var(--color5);
 }
 
