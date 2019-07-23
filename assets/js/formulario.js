@@ -85,7 +85,7 @@ function montaTr(paciente) {
 
         inputNome.value = paciente.nome;
         inputIdade.value = paciente.idade;
-        inputSexo.value = valorSelect();
+        inputSexo.value = paciente.sexo;
         inputPeso.value = paciente.peso;
         inputAltura.value = paciente.altura;
         inputIndex.value = this.parentNode.rowIndex;
